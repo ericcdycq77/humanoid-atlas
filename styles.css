@@ -535,6 +535,67 @@ main {
   line-height: 1.68;
 }
 
+.flow-diagram {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(118px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+  overflow-x: auto;
+  padding: 2px 2px 12px;
+  scrollbar-width: thin;
+}
+
+.flow-node {
+  position: relative;
+  min-width: 118px;
+  min-height: 176px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--accent, var(--cyan));
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 12px 34px rgba(23, 32, 29, 0.07);
+}
+
+.flow-node:not(:last-child)::after {
+  content: ">";
+  position: absolute;
+  top: 50%;
+  right: -13px;
+  z-index: 2;
+  display: grid;
+  width: 18px;
+  height: 18px;
+  place-items: center;
+  border-radius: 999px;
+  color: #ffffff;
+  background: #17201d;
+  font-size: 0.78rem;
+  font-weight: 900;
+  transform: translateY(-50%);
+}
+
+.flow-node span {
+  display: inline-flex;
+  margin-bottom: 12px;
+  color: var(--accent, var(--cyan));
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.flow-node h3 {
+  margin: 0 0 10px;
+  font-size: 0.98rem;
+  line-height: 1.22;
+}
+
+.flow-node p {
+  margin: 0;
+  color: #4b5652;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
 .investor-questions ol {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -697,6 +758,19 @@ main {
 
 .lesson-card {
   padding: 18px;
+}
+
+.tech-link-card {
+  grid-column: 1 / -1;
+  border-top: 4px solid var(--accent, var(--cyan));
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent, var(--cyan)), #ffffff 92%), rgba(255, 255, 255, 0.88));
+}
+
+.tech-link-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.08rem;
+  line-height: 1.28;
 }
 
 .lesson-card h2,
@@ -947,6 +1021,23 @@ main {
   .source-list,
   .investor-questions ol {
     grid-template-columns: 1fr;
+  }
+
+  .flow-diagram {
+    grid-template-columns: 1fr;
+    overflow-x: visible;
+    padding-bottom: 0;
+  }
+
+  .flow-node {
+    min-height: 0;
+  }
+
+  .flow-node:not(:last-child)::after {
+    top: auto;
+    right: 50%;
+    bottom: -15px;
+    transform: translateX(50%) rotate(90deg);
   }
 
   .learning-stats {
