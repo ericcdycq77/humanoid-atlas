@@ -1,22 +1,25 @@
 const TEXT = {
   brand: { en: "Humanoid Atlas", zh: "仿人机器人图谱" },
-  tagline: { en: "Robot anatomy for beginners", zh: "给初学者的机器人解剖课" },
+  tagline: { en: "From anatomy to robot foundation models", zh: "从机械解剖到机器人基础模型" },
   home: { en: "Home", zh: "首页" },
   footer: {
-    en: "Built as a calm, bilingual starter textbook for humanoid robotics.",
-    zh: "为仿人机器人初学者制作的双语入门图谱。"
+    en: "A bilingual living textbook for learning humanoid robots from first principles to founder-level judgment.",
+    zh: "一本双语动态教材：从零基础理解仿人机器人，再走到创始人级判断。"
   },
   start: { en: "Start with the head", zh: "从头部开始" },
   overview: { en: "See all systems", zh: "查看全部系统" },
-  homeEyebrow: { en: "Interactive beginner textbook", zh: "互动式初学者教材" },
-  homeTitle: { en: "Learn humanoid robots.", zh: "学习仿人机器人。" },
+  founderMode: { en: "Founder Mode", zh: "创始人模式" },
+  founderButton: { en: "AI + company deep dive", zh: "AI 与公司深度课" },
+  homeEyebrow: { en: "Interactive founder-ready textbook", zh: "创始人也能用的互动教材" },
+  homeTitle: { en: "Learn humanoids deeply.", zh: "深入学习仿人机器人。" },
   homeLead: {
-    en: "Tap a major part, open its subparts, then keep drilling down until the robot stops feeling mysterious. Every page explains the purpose, the mechanism, and a simple way to think about it.",
-    zh: "点击一个主要部位，进入它的子系统，再继续深入到零件层级。每一页都会解释用途、工作方式，以及适合初学者理解的类比。"
+    en: "Start with the body, then connect every part to perception, control, data, VLA models, safety, manufacturing, and business judgment. The goal is simple language without shallow thinking.",
+    zh: "先从身体结构入门，再把每个部位连接到感知、控制、数据、VLA 模型、安全、制造和商业判断。目标是语言易懂，但思考不浅。"
   },
   statsParts: { en: "major systems", zh: "主要系统" },
   statsDepth: { en: "learning levels", zh: "学习层级" },
   statsLang: { en: "languages", zh: "语言" },
+  statsFounder: { en: "founder lens", zh: "创始人视角" },
   mapTitle: { en: "Open a system", zh: "打开一个系统" },
   mapLead: {
     en: "The labels point to major robot systems. A real humanoid may arrange them differently, but the learning map is the same.",
@@ -38,7 +41,34 @@ const TEXT = {
   backHome: { en: "Back to robot", zh: "返回机器人" },
   learningDepth: { en: "Learning depth", zh: "学习层级" },
   levelWord: { en: "Level", zh: "第" },
-  levelSuffix: { en: "", zh: "层" }
+  levelSuffix: { en: "", zh: "层" },
+  founderEyebrow: { en: "Current robotics AI map", zh: "最新机器人 AI 主线" },
+  founderTitle: {
+    en: "What a humanoid company must understand now.",
+    zh: "现在办一家机器人公司，必须理解什么。"
+  },
+  founderLead: {
+    en: "The modern humanoid is not only motors and batteries. It is a stack: hardware, sensors, real-time control, safety, robot data, foundation models, and a painful path to reliable deployment.",
+    zh: "今天的仿人机器人不只是电机和电池，而是一整套系统：硬件、传感器、实时控制、安全、机器人数据、基础模型，以及通向可靠部署的艰难工程路径。"
+  },
+  founderUpdated: {
+    en: "Updated with 2023-2026 VLA and robot foundation model concepts",
+    zh: "已加入 2023-2026 年 VLA 与机器人基础模型概念"
+  },
+  founderAudience: {
+    en: "For founders, investors, and serious beginners",
+    zh: "面向创始人、投资人和认真入门者"
+  },
+  founderSources: { en: "Research Sources", zh: "研究来源" },
+  founderSourcesTitle: {
+    en: "Where this deep mode is grounded.",
+    zh: "这套深度模式的资料锚点。"
+  },
+  founderSourcesLead: {
+    en: "This page uses public papers and official research posts as anchors. The field moves fast, so treat it as a living reading map.",
+    zh: "本页以公开论文和官方研究资料作为锚点。这个领域变化很快，所以应把它当作动态阅读地图。"
+  },
+  sourceOpen: { en: "Open paper or source", zh: "打开论文或资料" }
 };
 
 const accent = {
@@ -2293,6 +2323,486 @@ const atlas = {
   ]
 };
 
+const founderBadges = [
+  { en: "LLM", zh: "LLM" },
+  { en: "VLM", zh: "VLM" },
+  { en: "VLA", zh: "VLA" },
+  { en: "Robot foundation model", zh: "机器人基础模型" },
+  { en: "Data flywheel", zh: "数据飞轮" },
+  { en: "Deployment economics", zh: "部署经济性" }
+];
+
+const founderSections = [
+  {
+    id: "terms",
+    accent: "#0f9fb8",
+    eyebrow: { en: "01 / Vocabulary", zh: "01 / 先把词分清" },
+    title: {
+      en: "LLM, VLM, VLA, and action models are different layers.",
+      zh: "LLM、VLM、VLA、Action Model 不是同一个东西。"
+    },
+    lead: {
+      en: "A beginner often thinks the robot's brain is one giant AI. A founder needs a cleaner map: language reasoning, visual understanding, action generation, and real-time control have different jobs and different failure modes.",
+      zh: "很多初学者会把机器人的“大脑”想成一个巨大的 AI。创始人需要更清楚的地图：语言推理、视觉理解、动作生成、实时控制各做各的事，失败方式也完全不同。"
+    },
+    cards: [
+      {
+        title: { en: "LLM: language and reasoning", zh: "LLM：语言与推理" },
+        body: {
+          en: "A large language model can explain, plan, write code, ask clarifying questions, and reason about goals. It does not by itself know the exact torque for a knee motor or the force needed to pinch a cup.",
+          zh: "大语言模型擅长解释、规划、写代码、追问需求和做高层推理。但它本身并不知道膝关节电机该给多少扭矩，也不知道夹杯子需要多大力。"
+        }
+      },
+      {
+        title: { en: "VLM: vision plus language", zh: "VLM：视觉加语言" },
+        body: {
+          en: "A vision-language model links images with words. It can answer what is in a scene, where an object is, or which item matches a request. It is closer to perception and scene understanding.",
+          zh: "视觉语言模型把图像和语言连起来。它能回答画面里有什么、物体在哪里、哪个东西符合指令。它更接近“看懂场景”。"
+        }
+      },
+      {
+        title: { en: "VLA: vision-language-action", zh: "VLA：视觉-语言-行动" },
+        body: {
+          en: "A VLA model takes images, language, and sometimes robot state, then predicts actions. This is the recent core idea behind models such as RT-2, OpenVLA, Gemini Robotics, GR00T N1, and pi-zero.",
+          zh: "VLA 模型输入图像、语言，有时还输入机器人的关节状态，然后输出动作。这是 RT-2、OpenVLA、Gemini Robotics、GR00T N1、pi-zero 等路线的核心。"
+        }
+      },
+      {
+        title: { en: "Action model: the physical output layer", zh: "Action Model：物理输出层" },
+        body: {
+          en: "When people say large action model, they usually mean a model that converts understanding into executable motion. The hard part is not saying what to do, but producing safe, smooth, timed actions on a real body.",
+          zh: "如果你说的 LA 是 Large Action Model，可以理解为“把理解变成可执行动作”的模型。难点不只是说出要做什么，而是让真实身体安全、平滑、按时地动起来。"
+        }
+      }
+    ],
+    note: {
+      title: { en: "Founder translation", zh: "创始人翻译" },
+      body: {
+        en: "Do not ask only, what model do we use? Ask which layer creates value, which layer is commodity, and which layer is your defensible data loop.",
+        zh: "不要只问“我们用什么模型”。要问：哪一层真正创造价值，哪一层会商品化，哪一层能形成你的数据闭环和壁垒。"
+      }
+    }
+  },
+  {
+    id: "stack",
+    accent: "#2c8c69",
+    eyebrow: { en: "02 / From command to torque", zh: "02 / 从一句话到电机扭矩" },
+    title: {
+      en: "A humanoid brain is a stack, not one magic model.",
+      zh: "仿人机器人的大脑是一套栈，不是一个魔法模型。"
+    },
+    lead: {
+      en: "A useful robot must repeatedly convert messy reality into state, state into intent, intent into actions, and actions into motor commands while safety systems supervise the whole loop.",
+      zh: "一个有用的机器人必须不断把混乱现实变成状态，把状态变成意图，把意图变成动作，再把动作变成电机命令，同时安全系统要监控整个闭环。"
+    },
+    cards: [
+      {
+        title: { en: "Perception", zh: "感知层" },
+        body: {
+          en: "Cameras, depth sensors, microphones, tactile sensors, IMUs, and joint encoders estimate what is happening. Bad perception makes every later layer look stupid.",
+          zh: "相机、深度传感器、麦克风、触觉、IMU 和关节编码器估计现实世界发生了什么。感知差，后面每一层都会显得很笨。"
+        }
+      },
+      {
+        title: { en: "World state", zh: "世界状态" },
+        body: {
+          en: "The robot keeps a short-lived model of objects, people, surfaces, free space, contact, and its own body pose. This is the robot's working memory.",
+          zh: "机器人需要维护一个短期世界模型：物体、人、桌面、空闲空间、接触状态，以及自己的身体姿态。这就是机器人的工作记忆。"
+        }
+      },
+      {
+        title: { en: "Planner", zh: "规划层" },
+        body: {
+          en: "A high-level planner decides the next subtask: open the drawer, grasp the handle, move the cup, or ask for help. LLMs and VLMs are useful here, especially for language and common-sense reasoning.",
+          zh: "高层规划决定下一步子任务：打开抽屉、抓住把手、移动杯子，或请求帮助。LLM/VLM 在这里有价值，尤其是语言和常识推理。"
+        }
+      },
+      {
+        title: { en: "Policy or VLA", zh: "策略层或 VLA" },
+        body: {
+          en: "The policy turns observations and goals into action sequences. Newer VLA systems try to make this layer more general, so one model can adapt across tasks, objects, and sometimes robot bodies.",
+          zh: "策略层把观察和目标变成动作序列。新的 VLA 系统试图让这一层更通用，让一个模型跨任务、跨物体，甚至部分跨机器人身体迁移。"
+        }
+      },
+      {
+        title: { en: "Low-level control", zh: "低层控制" },
+        body: {
+          en: "Whole-body control, impedance control, PID loops, and motor drivers keep the robot balanced and physically stable. This layer runs much faster than a language model.",
+          zh: "全身控制、阻抗控制、PID 回路和电机驱动负责保持平衡和物理稳定。这一层的运行频率远高于语言模型。"
+        }
+      },
+      {
+        title: { en: "Safety shell", zh: "安全壳" },
+        body: {
+          en: "Limits on force, speed, joint range, collision zones, emergency stop, and forbidden actions must remain active even when the AI is uncertain or wrong.",
+          zh: "力、速度、关节范围、碰撞区域、急停和禁行动作的限制，必须在 AI 不确定或犯错时仍然有效。"
+        }
+      }
+    ],
+    note: {
+      title: { en: "Simple mental model", zh: "简单心智模型" },
+      body: {
+        en: "The LLM is more like a strategist. The VLA is closer to a trained operator. The low-level controller is the reflex system that keeps the body from falling or hurting someone.",
+        zh: "LLM 更像战略顾问，VLA 更像训练过的操作员，低层控制器更像反射神经，负责不摔倒、不伤人。"
+      }
+    }
+  },
+  {
+    id: "data",
+    accent: "#b88a26",
+    eyebrow: { en: "03 / Data engine", zh: "03 / 数据发动机" },
+    title: {
+      en: "The winning company is often the one that learns fastest from real work.",
+      zh: "最后胜出的公司，往往是从真实工作中学习最快的公司。"
+    },
+    lead: {
+      en: "Humanoid robotics is data hungry because the physical world has friction, lighting changes, clutter, fragile objects, and people doing unexpected things. A demo is not a data strategy.",
+      zh: "仿人机器人极度吃数据，因为真实世界有摩擦、光照变化、杂乱环境、易碎物体，以及不可预测的人。一个演示视频不是数据战略。"
+    },
+    cards: [
+      {
+        title: { en: "Teleoperation demonstrations", zh: "遥操作示范" },
+        body: {
+          en: "Humans control the robot to show successful behavior. This creates paired data: observation, instruction, robot state, and action. The cost and speed of collecting this data matter enormously.",
+          zh: "人类遥控机器人完成任务，产生“观察、指令、机器人状态、动作”的配对数据。采集成本和速度非常关键。"
+        }
+      },
+      {
+        title: { en: "Fleet learning", zh: "机队学习" },
+        body: {
+          en: "Once robots are deployed, every success, failure, intervention, and near-miss can improve the next model. This is where a deployment company may build a real moat.",
+          zh: "机器人部署后，每次成功、失败、人工接管和险些出错，都可以改进下一版模型。这是部署型公司可能形成真正壁垒的地方。"
+        }
+      },
+      {
+        title: { en: "Simulation and synthetic data", zh: "仿真与合成数据" },
+        body: {
+          en: "Simulation can create rare scenes and scale practice, but the sim-to-real gap is brutal. The question is what transfers to the real robot, not how beautiful the simulator looks.",
+          zh: "仿真能制造稀有场景并放大练习量，但 sim-to-real 差距很残酷。关键不是仿真多漂亮，而是什么能迁移到真实机器人。"
+        }
+      },
+      {
+        title: { en: "Human video and web knowledge", zh: "人类视频与网络知识" },
+        body: {
+          en: "Some modern models use web-scale visual and language knowledge, and sometimes human videos, to gain semantic priors. But a human video does not contain robot joint commands, so it must be grounded carefully.",
+          zh: "现代模型会利用网络规模的视觉语言知识，有时也利用人类视频来获得语义先验。但人类视频没有机器人关节命令，必须谨慎落地。"
+        }
+      },
+      {
+        title: { en: "Evaluation discipline", zh: "评测纪律" },
+        body: {
+          en: "A serious team measures task success, recovery, latency, autonomy percentage, human intervention rate, damage rate, and time between failures. This separates engineering from storytelling.",
+          zh: "严肃团队会测任务成功率、恢复能力、延迟、自主比例、人工接管率、损坏率和故障间隔。这能把工程和讲故事区分开。"
+        }
+      },
+      {
+        title: { en: "Post-training and fine-tuning", zh: "后训练与微调" },
+        body: {
+          en: "General robot models are rarely enough out of the box. The practical company needs a repeatable way to adapt models to its robot, customer site, and target workflow.",
+          zh: "通用机器人模型通常不能开箱即用。真正落地的公司需要可重复的方法，把模型适配到自己的机器人、客户现场和目标流程。"
+        }
+      }
+    ],
+    note: {
+      title: { en: "Investor translation", zh: "投资人翻译" },
+      body: {
+        en: "Ask how many real episodes the company collects per week, what percentage is useful, and how quickly a failure becomes a better policy.",
+        zh: "要问公司每周采集多少真实 episode，其中多少有用，一个失败案例多久能变成更好的策略。"
+      }
+    }
+  },
+  {
+    id: "research",
+    accent: "#7462b8",
+    eyebrow: { en: "04 / Research map", zh: "04 / 研究主线" },
+    title: {
+      en: "The frontier is robot foundation models, not only better parts.",
+      zh: "前沿不只是更好的零件，而是机器人基础模型。"
+    },
+    lead: {
+      en: "From 2023 onward, the most important papers pushed toward models that combine internet-scale semantics with robot trajectories, then adapt that knowledge to physical action.",
+      zh: "从 2023 年开始，最重要的方向之一是把互联网规模语义知识和机器人轨迹数据结合，再把这些知识迁移到真实动作上。"
+    },
+    cards: [
+      {
+        title: { en: "RT-2", zh: "RT-2" },
+        body: {
+          en: "A major early VLA example: represent robot actions as tokens so a vision-language model can learn web knowledge and robot actions in one training recipe.",
+          zh: "早期代表性 VLA：把机器人动作表示成 token，让视觉语言模型在同一套训练中学习网络知识和机器人动作。"
+        }
+      },
+      {
+        title: { en: "OpenVLA", zh: "OpenVLA" },
+        body: {
+          en: "An open-source VLA trained on large robot demonstration data, important because founders can study, fine-tune, and benchmark a real open recipe instead of only watching closed demos.",
+          zh: "开源 VLA，使用大量机器人示范数据训练。它重要在于团队可以研究、微调、评测真实开放路线，而不是只能看闭源演示。"
+        }
+      },
+      {
+        title: { en: "pi-zero and pi-zero point five", zh: "pi-zero 与 pi-zero point five" },
+        body: {
+          en: "A move toward high-frequency continuous action generation and open-world generalization, closer to the dexterity needed for homes, kitchens, laundry, and messy manipulation.",
+          zh: "这一路线强调高频连续动作生成和开放世界泛化，更接近家庭、厨房、洗衣和复杂操作需要的灵巧性。"
+        }
+      },
+      {
+        title: { en: "Gemini Robotics", zh: "Gemini Robotics" },
+        body: {
+          en: "Google DeepMind's VLA direction connects Gemini-style multimodal reasoning with physical actions, plus an embodied reasoning model for spatial understanding and robot tool use.",
+          zh: "Google DeepMind 的 VLA 路线把 Gemini 式多模态推理连接到物理动作，并加入具身推理模型处理空间理解和机器人工具调用。"
+        }
+      },
+      {
+        title: { en: "GR00T N1", zh: "GR00T N1" },
+        body: {
+          en: "NVIDIA's open humanoid foundation model uses a dual-system idea: a slower vision-language reasoning layer and a faster action layer for real-time motor behavior.",
+          zh: "NVIDIA 的开放仿人基础模型采用双系统思路：较慢的视觉语言推理层，加上较快的动作层，用于实时运动行为。"
+        }
+      },
+      {
+        title: { en: "3D, 4D, and world models", zh: "3D、4D 与世界模型" },
+        body: {
+          en: "A newer research direction asks the model to reason about 3D space, time, and future scene geometry, because real manipulation is about what will happen after contact.",
+          zh: "更新的研究方向要求模型理解 3D 空间、时间和未来场景几何，因为真实操作的关键是接触之后会发生什么。"
+        }
+      }
+    ],
+    note: {
+      title: { en: "How to read demos", zh: "如何看演示" },
+      body: {
+        en: "The frontier is real, but most systems are still early. Watch for number of trials, unseen environments, human intervention, failure recovery, hardware cost, and whether the robot repeats the task tomorrow.",
+        zh: "前沿是真实的，但多数系统仍处早期。看演示时要关注试验次数、未见环境、人工接管、失败恢复、硬件成本，以及明天能否重复同样任务。"
+      }
+    }
+  },
+  {
+    id: "company",
+    accent: "#d46a4c",
+    eyebrow: { en: "05 / Company building", zh: "05 / 公司判断" },
+    title: {
+      en: "A humanoid startup is judged by deployment truth, not robot beauty.",
+      zh: "判断一家仿人机器人公司，不能只看机器人好不好看。"
+    },
+    lead: {
+      en: "A beautiful body can hide bad economics. A clever AI demo can hide weak hardware. A founder needs to connect technical progress to a wedge market, operating model, and repeatable customer ROI.",
+      zh: "漂亮外形可能掩盖糟糕经济性，聪明 AI 演示可能掩盖硬件脆弱。创始人需要把技术进展连接到切入市场、运营模式和可重复客户 ROI。"
+    },
+    cards: [
+      {
+        title: { en: "Choose a narrow wedge", zh: "选择狭窄切入点" },
+        body: {
+          en: "Start with one job where the humanoid form actually matters: human tools, human spaces, variable objects, or labor shortage. General purpose is a destination, not the first product.",
+          zh: "先选一个仿人形态真正有意义的任务：使用人类工具、进入人类空间、处理变化物体，或解决缺工。通用是终点，不是第一款产品。"
+        }
+      },
+      {
+        title: { en: "Unit economics", zh: "单机经济性" },
+        body: {
+          en: "Track bill of materials, service cost, battery swaps, spare parts, remote operators, insurance, and uptime. A robot that works 60 percent of the time may still be commercially useless.",
+          zh: "追踪 BOM、服务成本、换电、备件、远程操作员、保险和 uptime。一个 60% 时间可用的机器人，商业上可能仍然没用。"
+        }
+      },
+      {
+        title: { en: "Autonomy honesty", zh: "自主性诚实度" },
+        body: {
+          en: "Separate autonomous execution from remote assistance. Teleoperation is useful for data collection and fallback, but hiding it as autonomy destroys trust and unit economics.",
+          zh: "必须区分自主执行和远程协助。遥操作对数据采集和兜底很有用，但如果伪装成自主，会摧毁信任和经济模型。"
+        }
+      },
+      {
+        title: { en: "Hardware bottlenecks", zh: "硬件瓶颈" },
+        body: {
+          en: "Hands, actuators, thermal design, battery, cabling, falls, and maintainability decide whether the AI can meet reality. Many AI strategies fail because the body cannot survive the job.",
+          zh: "手、执行器、散热、电池、线束、跌倒和可维护性，决定 AI 能否碰到现实。很多 AI 策略失败，是因为身体扛不住任务。"
+        }
+      },
+      {
+        title: { en: "Safety and liability", zh: "安全与责任" },
+        body: {
+          en: "A company needs force limits, speed limits, safety-rated behavior, incident logging, audit trails, and a policy for what the robot must refuse to do.",
+          zh: "公司需要力限制、速度限制、安全等级行为、事故记录、审计轨迹，以及机器人必须拒绝哪些行为的策略。"
+        }
+      },
+      {
+        title: { en: "Data moat", zh: "数据壁垒" },
+        body: {
+          en: "The strongest moat is not a slide saying AI. It is a loop where deployment creates proprietary task data, which improves performance, which wins more deployments.",
+          zh: "最强壁垒不是 PPT 上写 AI，而是部署产生专有任务数据，数据提升性能，性能赢得更多部署的循环。"
+        }
+      }
+    ],
+    note: {
+      title: { en: "Founder question", zh: "创始人自问" },
+      body: {
+        en: "If tomorrow the best open VLA model becomes free, what still makes your company hard to copy: data, hardware, customer access, operations, safety approval, or manufacturing?",
+        zh: "如果明天最好的开源 VLA 免费了，你的公司还有什么难以复制：数据、硬件、客户入口、运营、安全认证，还是制造能力？"
+      }
+    }
+  },
+  {
+    id: "red-flags",
+    accent: "#4f7d62",
+    eyebrow: { en: "06 / Diligence checklist", zh: "06 / 尽调清单" },
+    title: {
+      en: "Red flags that make a humanoid company look deeper than it is.",
+      zh: "一些让机器人公司“看起来很深”、但实际很危险的信号。"
+    },
+    lead: {
+      en: "For investment or company building, the key skill is not cynicism. It is knowing which questions expose the difference between a lab milestone and a repeatable business.",
+      zh: "投资或创业时，关键能力不是唱衰，而是知道哪些问题能区分实验室里程碑和可重复商业。"
+    },
+    cards: [
+      {
+        title: { en: "Only edited demos", zh: "只有剪辑演示" },
+        body: {
+          en: "Ask for uncut runs, failure cases, number of attempts, and whether the robot can repeat the task after lighting, object, or layout changes.",
+          zh: "要求看未剪辑运行、失败案例、尝试次数，以及光照、物体、布局变化后能否重复任务。"
+        }
+      },
+      {
+        title: { en: "No uptime numbers", zh: "没有 uptime 数据" },
+        body: {
+          en: "A commercial robot is a machine in service. If the company cannot discuss uptime, repair time, and intervention rate, it is probably not near deployment.",
+          zh: "商业机器人是服务中的机器。如果公司说不清 uptime、维修时间和接管率，多半还没接近部署。"
+        }
+      },
+      {
+        title: { en: "AI claims ignore control", zh: "AI 叙事忽略控制" },
+        body: {
+          en: "If the story jumps from LLM to full-body motion with no discussion of control frequency, contacts, balance, force limits, or safety, the stack is incomplete.",
+          zh: "如果故事从 LLM 直接跳到全身运动，却不谈控制频率、接触、平衡、力限制和安全，那技术栈不完整。"
+        }
+      },
+      {
+        title: { en: "No customer wedge", zh: "没有客户切入点" },
+        body: {
+          en: "A general humanoid market sounds huge, but early customers buy a solved job. Ask which painful workflow the robot owns first.",
+          zh: "通用仿人市场听起来很大，但早期客户买的是一个被解决的具体工作。要问机器人先占住哪个痛点流程。"
+        }
+      },
+      {
+        title: { en: "Hidden remote labor", zh: "隐藏远程人工" },
+        body: {
+          en: "Remote help can be acceptable. The issue is whether the company measures it honestly and has a credible path to reduce it.",
+          zh: "远程协助本身可以接受。问题是公司是否诚实计量，并有可信路径逐步降低。"
+        }
+      },
+      {
+        title: { en: "Hardware cost fantasy", zh: "硬件成本幻想" },
+        body: {
+          en: "Ask which parts are custom, which are commodity, expected cycle life, repair process, and whether the design was built for manufacturing from day one.",
+          zh: "要问哪些部件自研、哪些商品化、预期寿命、维修流程，以及设计是否一开始就面向量产。"
+        }
+      }
+    ],
+    note: {
+      title: { en: "Good sign", zh: "好的信号" },
+      body: {
+        en: "A strong team is usually honest about narrow scope, failure modes, intervention rate, and how each deployed robot improves the next one.",
+        zh: "强团队通常会诚实说明范围很窄、失败模式、接管率，以及每台已部署机器人如何改进下一台。"
+      }
+    }
+  }
+];
+
+const founderQuestions = [
+  {
+    en: "Which exact task can the robot do today with measurable customer ROI?",
+    zh: "机器人今天能完成哪个具体任务，并产生可测量的客户 ROI？"
+  },
+  {
+    en: "What is the autonomy percentage without editing or hidden remote control?",
+    zh: "不剪辑、不隐藏远程控制时，自主比例是多少？"
+  },
+  {
+    en: "How many real robot episodes are collected weekly, and how do they improve the model?",
+    zh: "每周采集多少真实机器人 episode，它们如何改进模型？"
+  },
+  {
+    en: "Which failures are hardware, which are perception, which are policy, and which are operations?",
+    zh: "失败分别来自硬件、感知、策略，还是运营？"
+  },
+  {
+    en: "If the best open model becomes free, what remains proprietary and valuable?",
+    zh: "如果最好的开源模型免费了，公司还剩下什么专有且有价值？"
+  }
+];
+
+const founderSources = [
+  {
+    year: "2023",
+    title: { en: "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control", zh: "RT-2：把网络知识迁移到机器人控制" },
+    note: {
+      en: "Introduced a key VLA recipe: co-train vision-language knowledge and robot actions by representing actions as tokens.",
+      zh: "代表性 VLA 路线：把视觉语言知识和机器人动作共同训练，并把动作表示成 token。"
+    },
+    url: "https://arxiv.org/abs/2307.15818"
+  },
+  {
+    year: "2024",
+    title: { en: "OpenVLA: An Open-Source Vision-Language-Action Model", zh: "OpenVLA：开源视觉-语言-行动模型" },
+    note: {
+      en: "Important open model and training recipe for studying VLA fine-tuning and deployment constraints.",
+      zh: "研究 VLA 微调、部署限制和开放路线的重要模型。"
+    },
+    url: "https://arxiv.org/abs/2406.09246"
+  },
+  {
+    year: "2024",
+    title: { en: "pi-zero: A Vision-Language-Action Flow Model for General Robot Control", zh: "pi-zero：用于通用机器人控制的 VLA flow model" },
+    note: {
+      en: "Shows the shift toward continuous high-frequency action generation for dexterous robot behavior.",
+      zh: "体现了向高频连续动作生成和灵巧行为迁移的趋势。"
+    },
+    url: "https://arxiv.org/abs/2410.24164"
+  },
+  {
+    year: "2025",
+    title: { en: "Gemini Robotics: Bringing AI into the Physical World", zh: "Gemini Robotics：把 AI 带入物理世界" },
+    note: {
+      en: "Google DeepMind's VLA and embodied reasoning direction, including spatial understanding and safety discussion.",
+      zh: "Google DeepMind 的 VLA 与具身推理路线，包含空间理解和安全讨论。"
+    },
+    url: "https://arxiv.org/abs/2503.20020"
+  },
+  {
+    year: "2025",
+    title: { en: "GR00T N1: An Open Foundation Model for Generalist Humanoid Robots", zh: "GR00T N1：面向通用仿人机器人的开放基础模型" },
+    note: {
+      en: "NVIDIA's humanoid foundation model with a dual-system VLA architecture.",
+      zh: "NVIDIA 的仿人基础模型，采用双系统 VLA 架构。"
+    },
+    url: "https://arxiv.org/abs/2503.14734"
+  },
+  {
+    year: "2025",
+    title: { en: "pi-zero point five: VLA Model with Open-World Generalization", zh: "pi-zero point five：具备开放世界泛化的 VLA" },
+    note: {
+      en: "A newer step toward long-horizon, messy real-world manipulation across new homes.",
+      zh: "面向长时程、复杂真实环境操作的进一步探索。"
+    },
+    url: "https://arxiv.org/abs/2504.16054"
+  },
+  {
+    year: "2025",
+    title: { en: "Google DeepMind official Gemini Robotics post", zh: "Google DeepMind Gemini Robotics 官方文章" },
+    note: {
+      en: "Official explanation of Gemini Robotics, Gemini Robotics-ER, generality, interactivity, dexterity, and layered safety.",
+      zh: "官方解释 Gemini Robotics、Gemini Robotics-ER、通用性、交互性、灵巧性和分层安全。"
+    },
+    url: "https://deepmind.google/blog/gemini-robotics-brings-ai-into-the-physical-world/"
+  },
+  {
+    year: "2026",
+    title: { en: "StemVLA: 3D spatial geometry and 4D historical representation", zh: "StemVLA：3D 空间几何与 4D 历史表示" },
+    note: {
+      en: "An emerging research direction; useful for understanding why spatial and temporal world models matter.",
+      zh: "新兴研究方向；帮助理解为什么空间和时间世界模型重要。"
+    },
+    url: "https://arxiv.org/abs/2602.23721"
+  }
+];
+
 let lang = localStorage.getItem("humanoidAtlasLang") || "en";
 
 const app = document.querySelector("#app");
@@ -2376,11 +2886,13 @@ function renderHome() {
         <div class="hero-actions">
           <a class="button primary" href="#/head">${escapeHtml(t(TEXT.start))} ></a>
           <a class="button secondary" href="#systems">${escapeHtml(t(TEXT.overview))}</a>
+          <a class="button secondary emphasis" href="#/founder">${escapeHtml(t(TEXT.founderButton))}</a>
         </div>
         <div class="learning-stats" aria-label="Learning summary">
           <div class="stat"><strong>${systems.length}</strong><span>${escapeHtml(t(TEXT.statsParts))}</span></div>
           <div class="stat"><strong>4</strong><span>${escapeHtml(t(TEXT.statsDepth))}</span></div>
           <div class="stat"><strong>2</strong><span>${escapeHtml(t(TEXT.statsLang))}</span></div>
+          <div class="stat"><strong>1</strong><span>${escapeHtml(t(TEXT.statsFounder))}</span></div>
         </div>
       </div>
       <div class="robot-panel" aria-label="Clickable humanoid robot">
@@ -2412,6 +2924,109 @@ function renderHome() {
           `
         )
         .join("")}
+    </section>
+  `;
+}
+
+function renderFounderCards(cards) {
+  return cards
+    .map(
+      (card) => `
+        <article class="founder-card" style="--accent:${card.accent || "var(--cyan)"};">
+          <h3>${escapeHtml(t(card.title))}</h3>
+          <p>${escapeHtml(t(card.body))}</p>
+        </article>
+      `
+    )
+    .join("");
+}
+
+function renderFounderSection(section) {
+  return `
+    <section class="founder-section" id="${escapeHtml(section.id)}" style="--accent:${section.accent};">
+      <div class="section-heading">
+        <span class="eyebrow">${escapeHtml(t(section.eyebrow))}</span>
+        <h2>${escapeHtml(t(section.title))}</h2>
+        <p>${escapeHtml(t(section.lead))}</p>
+      </div>
+      <div class="founder-grid">
+        ${renderFounderCards(section.cards)}
+      </div>
+      <aside class="founder-note">
+        <strong>${escapeHtml(t(section.note.title))}</strong>
+        <p>${escapeHtml(t(section.note.body))}</p>
+      </aside>
+    </section>
+  `;
+}
+
+function renderFounderQuestions() {
+  return `
+    <section class="founder-section investor-questions" style="--accent:#17201d;">
+      <div class="section-heading">
+        <span class="eyebrow">${escapeHtml(t({ en: "Boardroom questions", zh: "董事会问题" }))}</span>
+        <h2>${escapeHtml(t({ en: "Five questions I would ask before starting or funding the company.", zh: "创业或投资前，我会先问这五个问题。" }))}</h2>
+      </div>
+      <ol>
+        ${founderQuestions.map((question) => `<li>${escapeHtml(t(question))}</li>`).join("")}
+      </ol>
+    </section>
+  `;
+}
+
+function renderFounderSources() {
+  return `
+    <section class="founder-section source-panel" style="--accent:#0f9fb8;">
+      <div class="section-heading">
+        <span class="eyebrow">${escapeHtml(t(TEXT.founderSources))}</span>
+        <h2>${escapeHtml(t(TEXT.founderSourcesTitle))}</h2>
+        <p>${escapeHtml(t(TEXT.founderSourcesLead))}</p>
+      </div>
+      <div class="source-list">
+        ${founderSources
+          .map(
+            (source) => `
+              <article class="source-item">
+                <span>${escapeHtml(source.year)}</span>
+                <h3>${escapeHtml(t(source.title))}</h3>
+                <p>${escapeHtml(t(source.note))}</p>
+                <a href="${escapeHtml(source.url)}" target="_blank" rel="noopener">${escapeHtml(t(TEXT.sourceOpen))} ></a>
+              </article>
+            `
+          )
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderFounder() {
+  app.innerHTML = `
+    <section class="founder-shell">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="#/">${escapeHtml(t(TEXT.backHome))}</a>
+        <span aria-hidden="true">/</span>
+        <span>${escapeHtml(t(TEXT.founderMode))}</span>
+      </nav>
+
+      <section class="founder-hero">
+        <div>
+          <span class="eyebrow">${escapeHtml(t(TEXT.founderEyebrow))}</span>
+          <h1>${escapeHtml(t(TEXT.founderTitle))}</h1>
+          <p class="lead">${escapeHtml(t(TEXT.founderLead))}</p>
+          <div class="founder-badges" aria-label="${escapeHtml(t(TEXT.founderUpdated))}">
+            ${founderBadges.map((badge) => `<span>${escapeHtml(t(badge))}</span>`).join("")}
+          </div>
+        </div>
+        <aside class="founder-summary">
+          <strong>${escapeHtml(t(TEXT.founderAudience))}</strong>
+          <p>${escapeHtml(t(TEXT.founderUpdated))}</p>
+        </aside>
+      </section>
+
+      ${founderSections.map(renderFounderSection).join("")}
+      ${renderFounderQuestions()}
+      ${renderFounderSources()}
     </section>
   `;
 }
@@ -2553,6 +3168,8 @@ function render() {
   const parts = routeParts();
   if (parts.length === 0) {
     renderHome();
+  } else if (parts[0] === "founder") {
+    renderFounder();
   } else {
     renderNode(parts);
   }

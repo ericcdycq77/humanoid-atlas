@@ -1,12 +1,13 @@
 # Humanoid Atlas
 
-A bilingual interactive textbook for beginners learning humanoid robot anatomy.
+A bilingual interactive textbook for learning humanoid robots from anatomy to robot foundation models and founder-level diligence.
 
 The site is static HTML, CSS, and JavaScript. It includes:
 
 - A clickable humanoid robot overview
 - English and Chinese language switching
 - Nested lessons for major robot systems
+- A Founder Mode covering LLM/VLM/VLA concepts, robot foundation models, data flywheels, safety, deployment economics, and diligence questions
 - Mobile-friendly layouts
 
 ## Local Preview
